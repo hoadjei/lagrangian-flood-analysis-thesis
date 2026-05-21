@@ -43,6 +43,6 @@ bash dkrz_helpers/setup_dkrz_env.sh --install-only
 
 The wrapper re-installs with a fresh ephemeral cache; nothing persists on `/scratch` after it
 exits. Bare `pixi add` calls outside the wrapper also fail safe: the setup script configures
-pixi's global `cache-dir` to point at `/scratch/<letter>/$USER/pixi-cache-default`, so no
+pixi's global `cache.root` to point at `/scratch/<letter>/$USER/pixi-cache-default`, so no
 package tarballs ever land in `$HOME`. The default `/scratch` directory is subject to DKRZ's
 14-day idle purge, which is fine — re-download is cheap on DFN.

@@ -87,7 +87,7 @@ fi
 SCRATCH_BASE="/scratch/${USER:0:1}/$USER"
 if [[ -d "$SCRATCH_BASE" ]]; then
   mkdir -p "$SCRATCH_BASE/pixi-cache-default"
-  "$PIXI_BIN" config set --global cache-dir "$SCRATCH_BASE/pixi-cache-default"
+  "$PIXI_BIN" config set --global cache.root "$SCRATCH_BASE/pixi-cache-default"
 fi
 
 if [[ "$mode" == "all" || "$mode" == "install" ]]; then
