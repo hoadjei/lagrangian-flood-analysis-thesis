@@ -42,21 +42,15 @@ pixi's global `cache.root` to point at `/scratch/<letter>/$USER/pixi-cache-defau
 package tarballs ever land in `$HOME`. The default `/scratch` directory is subject to DKRZ's
 14-day idle purge, which is fine — re-download is cheap on DFN.
 
-## 4. (Optional) Parcels tutorial notebooks and example data on `/work`
+## 4. (Optional) Parcels example data on `/work`
 
-The Parcels v3 tutorial notebooks (`docs/user_guide/examples_v3/` in the Parcels repo) download
-their example datasets via Parcels' `PARCELS_EXAMPLE_DATA` env var; by default that points into
-`$HOME`. To keep notebooks and data on `/work` instead, with your project id substituted for
-`<project>`:
+By default, Parcels downloads its example datasets into `$HOME`. To keep them on `/work`
+instead, with your project id substituted for `<project>`:
 
 ```bash
 PARCELS_VERSION=$(pixi list parcels | awk '/^parcels /{print $2; exit}')
 DATA_DIR="/work/<project>/$USER/parcels-data-$PARCELS_VERSION"
-SRC_DIR="/work/<project>/$USER/parcels-source-v$PARCELS_VERSION"
 mkdir -p "$DATA_DIR"
-
-git clone --branch "v$PARCELS_VERSION" --depth 1 \
-  https://github.com/Parcels-code/Parcels "$SRC_DIR"
 
 PARCELS_EXAMPLE_DATA="$DATA_DIR" pixi run python -c "
 import parcels
@@ -64,7 +58,3 @@ for name in parcels.list_example_datasets():
     parcels.download_example_dataset(name)
 "
 ```
-
-Then add `"PARCELS_EXAMPLE_DATA": "$DATA_DIR"` (with the actual path) to the `env` block of
-`~/.local/share/jupyter/kernels/lagrangian-flood-analysis-thesis/kernel.json` so the kernel
-finds the data too.
