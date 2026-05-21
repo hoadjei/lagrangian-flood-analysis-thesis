@@ -42,9 +42,9 @@
 #       https://pixi.sh/latest/reference/pixi_configuration/
 #
 # Usage:
-#   bash dkrz_helpers/setup_dkrz_env.sh              # install + register kernel
-#   bash dkrz_helpers/setup_dkrz_env.sh --install-only
-#   bash dkrz_helpers/setup_dkrz_env.sh --register-kernel-only
+#   bash dkrz/setup_dkrz_env.sh              # install + register kernel
+#   bash dkrz/setup_dkrz_env.sh --install-only
+#   bash dkrz/setup_dkrz_env.sh --register-kernel-only
 
 set -euo pipefail
 

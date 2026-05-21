@@ -33,4 +33,4 @@ tqdm = "*"
 # add pip-only deps here if needed
 
 [tasks]
-register-kernel = { cmd = ["bash", "dkrz_helpers/setup_dkrz_env.sh", "--register-kernel-only"] }
+register-kernel = { cmd = ["bash", "dkrz/setup_dkrz_env.sh", "--register-kernel-only"] }
