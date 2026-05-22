@@ -1,0 +1,36 @@
+[workspace]
+name = "lagrangian-flood-analysis-thesis"
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-arm64"]
+
+[dependencies]
+python = ">=3.11,<3.13"
+parcels = ">=3.1,<4"
+
+# JIT compiler that Parcels invokes at runtime
+c-compiler = "*"
+
+# Scientific stack
+numpy = "*"
+scipy = "*"
+xarray = "*"
+netcdf4 = "*"
+dask = "*"
+zarr = "*"
+pandas = "*"
+
+# Plotting / mapping
+matplotlib = "*"
+cartopy = "*"
+
+# Notebook + kernel
+jupyterlab = "*"
+ipykernel = "*"
+ipywidgets = "*"
+tqdm = "*"
+
+[pypi-dependencies]
+# add pip-only deps here if needed
+
+[tasks]
+register-kernel = { cmd = ["bash", "dkrz/setup_dkrz_env.sh", "--register-kernel-only"] }
