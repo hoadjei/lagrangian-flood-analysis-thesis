@@ -28,6 +28,8 @@ jupyterlab = "*"
 ipykernel = "*"
 ipywidgets = "*"
 tqdm = "*"
+copernicusmarine = ">=2.4.1,<3"
+papermill = ">=2.7.0,<3"
 
 [pypi-dependencies]
 # add pip-only deps here if needed
