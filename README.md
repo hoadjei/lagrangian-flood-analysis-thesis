@@ -1,6 +1,6 @@
-# Lagrangian Flood Analysis
+# Lagrangian Coherent Structures, Dispersal Patterns and Connectivity around Cabo Verde
 
-This repository hosts the codes and data documentation for the master's Thesis: Hydrodynamic Pathways of Flood-Event Runoff in the Cabo Verde Region: Implications for Island Connectivity and Marine Ecosystem Response.
+This repository hosts the documentation for the LCS calculation and visualisations, particle tracking simulations and connectivity matrices developed during the master's Thesis: LAGRANGIAN COHERENT STRUCTURES, DISPERSAL PATTERNS AND INTER-ISLAND CONNECTIVITY OF SIMULATED PARTICLES IN THE CABO VERDE REGION. 
 
 ## Setup and maintenance on DKRZ
 
