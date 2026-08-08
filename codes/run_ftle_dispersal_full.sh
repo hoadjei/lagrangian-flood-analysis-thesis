@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH --job-name=ftle_dispersal_full
 #SBATCH --partition=compute
-#SBATCH --mem=64G
+#SBATCH --mem=64G  # Go for full node. Should accommodate 4x 64. (Nodes are single-tenant anyway so the 256GB are blocked in any case)
 #SBATCH --time=04:00:00              
-#SBATCH --array=0-23%8             
+#SBATCH --array=0-23%8  # Only one job / year, we'll parallelize over ndays             
 #SBATCH --mail-type=FAIL
 #SBATCH --account=bk1450
 #SBATCH --output=ftle_dispersal_full.%A_%a.o   # %A = array job id, %a = task index
@@ -24,18 +24,24 @@ n_days=${WINDOWS[$window_idx]}
 
 echo "=== array task ${SLURM_ARRAY_TASK_ID}: window ${n_days}d, year ${YEAR} ==="
 
+# for n_days in 5 10 20 30; do
 # 1) Full-year backward-FTLE sweep + panel plot
 pixi run papermill \
     ftle_calc_and_plots.ipynb \
     ../data/ftle_calc_and_plots/ftle_calc_and_plots_${n_days}d_${YEAR}.ipynb \
     -p YEAR ${YEAR} \
     -p integration_days ${n_days} \
-    -p integration_direction -1
+    -p integration_direction -1 &  # backgrounded
+# done
+# wait  # blocks until all the pixi runs are done
 
+# for n_days in 5 10 20 30; do
 # 2) Full-year forward dispersal sweep + aggregated connectivity + FTLE-shaded panel plot
 pixi run papermill \
     dispersal_and_connectivity.ipynb \
     ../data/dispersal_and_connectivity/dispersal_and_connectivity_${n_days}d_${YEAR}.ipynb \
     -p YEAR ${YEAR} \
     -p integration_days ${n_days} \
-    -p integration_direction 1
+    -p integration_direction 1  & # backgrounded
+# done
+# wait  # important: Otherwise the job ends as soon as the last 4 pixi run's are _started_
